@@ -6,72 +6,91 @@ import { Award, Trophy, ExternalLink } from "lucide-react";
 
 export function Highlights() {
   return (
-    <section id="highlights" className="section-padding bg-slate-50 dark:bg-slate-900/50">
+    <section id="highlights" className="section-padding">
       <div className="max-width-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-32">
           {/* Certificates */}
-          <div>
-            <SectionHeading title="Certifications" align="left" />
+          <div className="space-y-12">
             <div className="space-y-4">
+              <span className="text-[10px] font-mono text-[var(--accent-color)] font-bold tracking-[0.4em] uppercase">
+                EXTERNAL_VALIDATION
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[var(--text-primary)] font-serif italic">
+                Certifications
+              </h2>
+            </div>
+            
+            <div className="space-y-6">
               {portfolioData.certificates.map((cert, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
+                  className="group"
                 >
-                  <GlassCard className="flex items-center gap-6 p-4 hover:bg-[var(--accent-color)]/5 transition-colors">
-                    <div className="p-3 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] border border-[var(--accent-color)]/20">
-                      <Award size={24} />
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-between py-6 border-b-2 border-[var(--card-border)] group-hover:bg-[var(--accent-color)]/5 transition-all px-4 rounded-xl"
+                  >
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-xl tracking-tight group-hover:text-[var(--accent-color)] transition-colors">
+                        {cert.name}
+                      </h4>
+                      <p className="text-sm text-[var(--text-secondary)] font-bold">
+                        {cert.issuer.toUpperCase()} — {cert.date}
+                      </p>
                     </div>
-                    <div className="flex-grow">
-                      <h4 className="font-bold text-lg">{cert.name}</h4>
-                      <p className="text-sm text-slate-500">{cert.issuer} • {cert.date}</p>
+                    <div className="p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ExternalLink size={20} className="text-[var(--accent-color)]" />
                     </div>
-                    <a
-                      href={cert.link}
-                      className="text-slate-400 hover:text-[var(--accent-color)] transition-colors"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  </GlassCard>
+                  </a>
                 </motion.div>
               ))}
             </div>
           </div>
 
           {/* Achievements */}
-          <div>
-            <SectionHeading title="Achievements" align="left" />
-            <div className="space-y-6">
+          <div className="space-y-12">
+            <div className="space-y-4">
+              <span className="text-[10px] font-mono text-[var(--accent-color)] font-bold tracking-[0.4em] uppercase">
+                BENCHMARK_METRICS
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[var(--text-primary)] font-serif italic">
+                Distinctions
+              </h2>
+            </div>
+
+            <div className="space-y-8">
               {portfolioData.achievements.map((ach, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
+                  className="space-y-4"
                 >
-                  <GlassCard className="relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
-                      <Trophy size={80} />
+                  <div className="flex items-baseline gap-4">
+                    <span className="text-[var(--accent-color)] font-mono text-sm font-black opacity-60">
+                      0{i + 1}
+                    </span>
+                    <h4 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">{ach.title}</h4>
+                  </div>
+                  <p className="pl-10 text-lg text-[var(--text-secondary)] font-medium leading-relaxed italic-serif">
+                    {ach.description}
+                  </p>
+                  {ach.metric && (
+                    <div className="pl-10">
+                      <span className="inline-flex items-center gap-2 px-4 py-2 bg-stone-100 dark:bg-white/10 border-2 border-stone-200 dark:border-white/10 rounded-full text-[11px] font-black uppercase tracking-widest text-[var(--accent-color)] shadow-sm">
+                        <Trophy size={14} />
+                        {ach.metric}
+                      </span>
                     </div>
-                    <div className="relative z-10">
-                      <div className="text-[var(--accent-color)] font-mono text-sm mb-2">{ach.date}</div>
-                      <h4 className="text-xl font-bold mb-2">{ach.title}</h4>
-                      <p className="text-slate-600 dark:text-slate-400 mb-4">
-                        {ach.description}
-                      </p>
-                      {ach.metric && (
-                        <div className="inline-block px-3 py-1 bg-[var(--accent-color)] text-slate-950 dark:text-slate-950 rounded-full text-xs font-bold uppercase tracking-widest">
-                          {ach.metric}
-                        </div>
-                      )}
-                    </div>
-                  </GlassCard>
+                  )}
                 </motion.div>
               ))}
             </div>

@@ -9,63 +9,70 @@ export function Experience() {
     <section id="experience" className="section-padding">
       <div className="max-width-container">
         <SectionHeading
-          title="Professional Journey"
-          subtitle="My career path, from early beginnings to current achievements."
+          title="Milestones"
+          subtitle="A narrative of growth, scholarship, and technical contributions."
         />
 
-        <div className="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-[var(--card-border)]">
+        <div className="space-y-32">
           {portfolioData.experience.map((exp, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20"
             >
-              {/* Dot */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--card-bg)] border-2 border-[var(--accent-color)] shadow shadow-[var(--accent-color)]/20 absolute left-0 md:left-1/2 md:-ml-5 z-10 transition-transform group-hover:scale-125">
-                <Building2 size={16} className="text-[var(--accent-color)]" />
-              </div>
-
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="w-[calc(100%-4rem)] md:w-[45%] p-4"
-              >
-                <GlassCard className="border-[var(--card-border)] bg-[var(--card-bg)] group-hover:border-[var(--accent-color)]/30">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <h3 className="text-xl font-bold text-[var(--text-primary)]">{exp.role}</h3>
-                    <div className="flex items-center gap-2 text-[var(--accent-color)] font-mono text-xs bg-[var(--accent-color)]/10 px-3 py-1 rounded-full border border-[var(--accent-color)]/10">
-                      <Calendar size={12} />
-                      {exp.duration}
-                    </div>
-                  </div>
-
-                  <div className="text-base font-semibold text-[var(--text-secondary)] mb-4">
+              {/* Left Side: Meta */}
+              <div className="lg:col-span-4 space-y-6">
+                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border-2 border-[var(--card-border)] bg-[var(--card-bg)] shadow-md">
+                  <Calendar size={14} className="text-[var(--accent-color)]" />
+                  <span className="text-[10px] font-mono font-bold tracking-widest text-[var(--text-primary)] uppercase">
+                    {exp.duration}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold tracking-tighter text-[var(--accent-color)]">
+                    {exp.role}
+                  </h3>
+                  <div className="text-xl font-bold text-[var(--text-primary)] opacity-80">
                     {exp.company}
                   </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-2 pt-4">
+                  {exp.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-1.5 bg-stone-100 dark:bg-white/10 text-[10px] font-bold font-mono text-[var(--text-secondary)] uppercase tracking-tighter border-2 border-stone-200 dark:border-white/10 rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-                  <ul className="space-y-3 mb-6">
+              {/* Right Side: Detailed Impact */}
+              <div className="lg:col-span-8 flex flex-col justify-start">
+                <div className="space-y-8">
+                  <div className="text-[9px] font-mono text-[var(--accent-color)] font-bold tracking-[0.4em] uppercase mb-4">
+                    MILESTONE_LOG: {idx + 1}
+                  </div>
+                  <ul className="grid grid-cols-1 gap-8">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="text-sm text-[var(--text-secondary)] flex items-start gap-2 leading-relaxed">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--accent-color)] shrink-0" />
-                        {item}
+                      <li key={i} className="group flex items-start gap-8">
+                        <div className="mt-2 text-[var(--accent-color)] font-mono text-sm font-bold opacity-60 group-hover:opacity-100 transition-opacity">
+                          0{i + 1}
+                        </div>
+                        <p className="text-xl md:text-2xl text-[var(--text-secondary)] font-medium leading-snug italic-serif">
+                          {item}
+                        </p>
                       </li>
                     ))}
                   </ul>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-[10px] font-mono text-[var(--text-secondary)] border border-[var(--card-border)] px-2.5 py-1 rounded-md bg-[var(--bg-color)]"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </GlassCard>
-              </motion.div>
-            </div>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

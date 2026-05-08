@@ -20,6 +20,14 @@ export interface Project {
   id: string;
   title: string;
   description: string;
+  purpose: string;
+  problem: string;
+  architecture: string;
+  technologies: string[];
+  keyFeatures: string[];
+  challenges: string;
+  decisions: string;
+  futureWork?: string;
   tags: string[];
   image: string;
   githubUrl?: string;
@@ -57,6 +65,15 @@ export interface Achievement {
   date: string;
 }
 
+export interface JourneyItem {
+  year: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  tech?: string[];
+  iconType: "code" | "security" | "intel" | "growth";
+}
+
 export interface Testimonial {
   name: string;
   role: string;
@@ -88,4 +105,5 @@ export interface PortfolioData {
   education: Education[];
   certificates: Certificate[];
   achievements: Achievement[];
+  journey: JourneyItem[];
 }

@@ -6,126 +6,102 @@ import { portfolioData } from "../data/portfolio";
 import { Terminal } from "../components/Terminal";
 
 export function Hero() {
-  const [text, setText] = useState("");
-  const fullText = portfolioData.personalInfo.role;
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (index < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText((prev) => prev + fullText[index]);
-        setIndex((prev) => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [index, fullText]);
-
   return (
-    <section className="relative min-height-[100vh] flex items-center justify-center overflow-hidden section-padding pt-32">
-      {/* Background elements */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[var(--accent-color)]/5 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute -right-20 -top-20 w-[400px] h-[400px] bg-[var(--accent-color)]/5 blur-[100px]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 z-0 opacity-15">
+        <div className="absolute top-[-5%] left-[-5%] w-[30%] h-[30%] rounded-full bg-[var(--accent-color)] blur-[100px] mix-blend-screen opacity-40" />
+        <div className="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] rounded-full bg-emerald-500/10 blur-[120px] mix-blend-screen" />
+        <div className="absolute top-[30%] right-[15%] w-[8%] h-[8%] rounded-full bg-sky-500/5 blur-[60px]" />
       </div>
 
-      <div className="max-width-container relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-block"
-        >
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[var(--accent-color)] to-emerald-500 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
-            <img
-              src={portfolioData.personalInfo.avatar}
-              alt="Avatar"
-              className="relative w-32 h-32 rounded-full border-2 border-slate-200 dark:border-white/5 object-cover grayscale hover:grayscale-0 transition-all duration-500 bg-white"
-            />
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <span className="font-mono text-[var(--accent-color)] mb-6 block tracking-[0.4em] uppercase text-[10px] font-bold">
-            session: root@roy/home
-          </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 tracking-tighter leading-[0.9] text-[var(--text-primary)]">
-            {portfolioData.personalInfo.name}
-          </h1>
-          <div className="flex items-center justify-center gap-2 text-xl md:text-3xl text-[var(--text-secondary)] mb-10 min-h-[1.5em] font-mono">
-            <span className="text-[var(--accent-color)] font-bold">{text}</span>
-            <span className="w-1.5 h-8 bg-[var(--accent-color)] animate-pulse" />
-          </div>
-        </motion.div>
-
-        <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 1.4 }}
-           className="max-w-2xl mx-auto mb-12"
-        >
-          <Terminal />
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {portfolioData.personalInfo.tagline}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="flex flex-wrap items-center justify-center gap-6"
-        >
-          <Button size="lg" onClick={() => window.location.href = "#projects"}>
-            View Projects
-          </Button>
-          <Button variant="outline" size="lg" onClick={() => window.location.href = "#contact"}>
-            Get In Touch
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="mt-12 flex justify-center gap-6 text-[var(--text-secondary)]"
-        >
-          {[
-            { Icon: Github, href: portfolioData.socials.github },
-            { Icon: Linkedin, href: portfolioData.socials.linkedin },
-            { Icon: Twitter, href: portfolioData.socials.twitter },
-          ].map(({ Icon, href }, i) => (
-            <a
-              key={i}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-[var(--accent-color)] dark:text-slate-400 dark:hover:text-[var(--accent-color)] transition-colors p-2"
+      <div className="max-width-container relative z-10 w-full px-6 py-12 md:py-24 flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="lg:col-span-5 flex flex-col items-start text-left w-full">
+          <div className="relative mb-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="text-[14vw] sm:text-[10vw] lg:text-[6vw] font-black leading-[1] tracking-[-0.06em] mb-4 text-[var(--text-primary)]"
             >
-              <Icon size={24} />
+              {portfolioData.personalInfo.name.toUpperCase()}
+            </motion.h1>
+            <div className="h-2 w-32 bg-[var(--accent-color)] mb-8 shadow-[0_0_20px_var(--accent-color)]" />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="space-y-6 mb-10"
+          >
+            <div className="space-y-1">
+              <p className="text-2xl sm:text-3xl md:text-4xl font-black text-[var(--text-primary)] tracking-tight uppercase leading-none">
+                B.Tech CSE Student
+              </p>
+              <p className="text-lg sm:text-xl font-bold text-[var(--accent-color)] tracking-[0.2em] uppercase opacity-80">
+                Systems & Security
+              </p>
+            </div>
+            <p className="text-base sm:text-lg md:text-xl font-medium text-[var(--text-secondary)] max-w-xl leading-relaxed italic-serif">
+              {portfolioData.personalInfo.tagline}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-wrap items-center gap-4 sm:gap-6 mb-12"
+          >
+            <Button size="lg" className="rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base group" onClick={() => (window.location.href = "#projects")}>
+              View Work
+              <motion.span
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+                className="ml-2 inline-block"
+              >
+                →
+              </motion.span>
+            </Button>
+            <Button variant="outline" size="lg" className="rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base" onClick={() => (window.location.href = "#contact")}>
+              Contact
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="flex items-center gap-6"
+          >
+            <a href={portfolioData.socials.github} target="_blank" rel="noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] transition-colors">
+              <Github size={24} />
             </a>
-          ))}
-        </motion.div>
+            <a href={portfolioData.socials.linkedin} target="_blank" rel="noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] transition-colors">
+              <Linkedin size={24} />
+            </a>
+            <a href={portfolioData.socials.twitter} target="_blank" rel="noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--accent-color)] transition-colors">
+              <Twitter size={24} />
+            </a>
+          </motion.div>
+        </div>
+
+        <div className="lg:col-span-7 w-full relative">
+          <div className="absolute inset-0 bg-[var(--accent-color)]/5 blur-[100px] rounded-full -z-10" />
+          <Terminal />
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-400"
-      >
-        <ArrowDown className="animate-bounce" />
-      </motion.div>
+      {/* Decorative vertical rails */}
+      <div className="absolute right-12 bottom-20 hidden lg:block overflow-hidden h-40 w-10">
+        <div className="flex flex-col gap-8 opacity-20">
+          <div className="h-20 w-px bg-[var(--text-secondary)] mx-auto" />
+          <span className="[writing-mode:vertical-rl] rotate-180 font-mono text-[10px] tracking-[0.5em] text-[var(--text-secondary)] uppercase">
+            SCROLL TO EXPLORE
+          </span>
+        </div>
+      </div>
     </section>
   );
 }

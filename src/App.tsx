@@ -6,16 +6,21 @@
 import { ThemeProvider } from "./context/ThemeContext";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./sections/Hero";
-import { About } from "./sections/About";
-import { Skills } from "./sections/Skills";
-import { Projects } from "./sections/Projects";
-import { Experience } from "./sections/Experience";
-import { Highlights } from "./sections/Highlights";
-import { Contact } from "./sections/Contact";
 import { Footer, ScrollProgress } from "./components/Footer";
 import { CustomCursor, LoadingScreen } from "./components/Effects";
+import { BottomStatus } from "./components/BottomStatus";
 import { AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+// Lazy load sections
+const About = lazy(() => import("./sections/About").then(m => ({ default: m.About })));
+const Journey = lazy(() => import("./sections/Journey").then(m => ({ default: m.Journey })));
+const Skills = lazy(() => import("./sections/Skills").then(m => ({ default: m.Skills })));
+const Projects = lazy(() => import("./sections/Projects").then(m => ({ default: m.Projects })));
+const GithubActivity = lazy(() => import("./sections/GithubActivity").then(m => ({ default: m.GithubActivity })));
+const Experience = lazy(() => import("./sections/Experience").then(m => ({ default: m.Experience })));
+const Highlights = lazy(() => import("./sections/Highlights").then(m => ({ default: m.Highlights })));
+const Contact = lazy(() => import("./sections/Contact").then(m => ({ default: m.Contact })));
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,19 +39,24 @@ export default function App() {
         {isLoading && <LoadingScreen key="loader" />}
       </AnimatePresence>
       
-      <div className="relative min-h-screen radial-glow cyber-grid">
+      <div className="relative min-h-screen cyber-grid">
         <CustomCursor />
         <ScrollProgress />
         <Navbar />
+        <BottomStatus />
         
         <main>
           <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Highlights />
-          <Contact />
+          <Suspense fallback={<div className="h-20" />}>
+            <About />
+            <Journey />
+            <Skills />
+            <Projects />
+            <GithubActivity />
+            <Experience />
+            <Highlights />
+            <Contact />
+          </Suspense>
         </main>
         
         <Footer />
