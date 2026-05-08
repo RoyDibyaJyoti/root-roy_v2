@@ -70,7 +70,7 @@ export const portfolioData: PortfolioData = {
     {
       company: "Andhra University",
       role: "B.Tech CSE Student & ICCR Scholar",
-      duration: "2022 - Present",
+      duration: "2025 - Present",
       description: [
         "Recipient of the ICCR Scholarship for academic excellence in technical studies.",
         "Focusing on Operating Systems, Networks, and Computer Architecture.",
@@ -83,7 +83,7 @@ export const portfolioData: PortfolioData = {
     {
       institution: "Andhra University",
       degree: "B.Tech in Computer Science & Engineering",
-      duration: "2022 - 2026",
+      duration: "2025 - 2029",
     },
   ],
   certificates: [
@@ -98,7 +98,7 @@ export const portfolioData: PortfolioData = {
     {
       title: "Scholarship Award",
       description: "Awarded full funding for Engineering studies by the ICCR.",
-      date: "2022",
+      date: "2025",
       metric: "ICCR Scholar",
     },
   ],
