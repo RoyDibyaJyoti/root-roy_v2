@@ -11,7 +11,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
           <div className="flex items-center gap-2 font-mono font-bold text-xl text-[var(--accent-color)]">
             <Terminal size={24} />
-            <span>PORTFOLIO</span>
+            <span>{"root@roy"}</span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-8">

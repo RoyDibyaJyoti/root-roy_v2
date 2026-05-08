@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     tagline: "Exploring kernel depths and securing digital perimeters.",
     bio: "B.Tech CSE student at Andhra University under the ICCR Scholarship. Passionate about Linux/UNIX systems and high-performance development. I bridge the gap between low-level system understanding and modern web security.",
     location: "Visakhapatnam, India",
-    email: "root@roy.local",
+    email: "roy.skaud@gmail.com",
     resumeUrl: "#",
     avatar: "https://api.dicebear.com/7.x/identicon/svg?seed=roy",
   },
@@ -70,7 +70,7 @@ export const portfolioData: PortfolioData = {
     {
       company: "Andhra University",
       role: "B.Tech CSE Student & ICCR Scholar",
-      duration: "2025 - Present",
+      duration: "2025 - 2029",
       description: [
         "Recipient of the ICCR Scholarship for academic excellence in technical studies.",
         "Focusing on Operating Systems, Networks, and Computer Architecture.",
@@ -90,8 +90,8 @@ export const portfolioData: PortfolioData = {
     {
       name: "Cybersecurity Fundamentals",
       issuer: "OffSec / Vendor",
-      date: "2023",
-      link: "#",
+      date: "2026",
+      link: "https://assessment.isea.app/validate-certificate/ISEA/SSS/AU/BC/2026/225650",
     },
   ],
   achievements: [
